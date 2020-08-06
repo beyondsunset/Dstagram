@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Dstagram{% block title %} {% endblock %}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <header class="header clearfix">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/"></a>
+            <ul class="nav">
+                <li class="nav-item"><a href="/" class = "active nav-link">Home</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="#" class = "nav-link">Welcome, {{user.get_username}}</a></li>
+                <li class="nav-item"><a href="{% url 'photo:photo_upload' %}" class = "nav-link">Upload</a></li>
+                <li class="nav-item"><a href="#" class = "nav-link">Logout</a></li>
+                <li class="nav-item"><a href="#" class = "nav-link">Login</a></li>
+                <li class="nav-item"><a href="#" class = "nav-link">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    {%block content%}
+    {% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2020 Powered by Django </p>
+    </footer>
+</div>
+
+
+</body>
+</html>
