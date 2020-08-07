@@ -7,6 +7,11 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
 
 
+def photo_list(request):
+    photos = Photo.objects.all()
+    return render(request, 'photo/list.html', {'photos': photos})
+
+
 class PhotoUploadView(CreateView):
     model = Photo
     fields = ['photo','text']
@@ -18,7 +23,7 @@ class PhotoUploadView(CreateView):
             form.instance.save()
             return redirect('/')
         else:
-            return self.render_to_response({'form':form})
+            return self.render_to_response({'form': form})
 
 
 class PhotoDeleteView(DeleteView):
@@ -26,13 +31,10 @@ class PhotoDeleteView(DeleteView):
     success_url = '/'
     template_name = 'photo/delete.html'
 
+
 class PhotoUpdateView(UpdateView):
     model = Photo
     fields = ['photo', 'text']
     template_name = 'photo/update.html'
 
-
-def photo_list(request):
-    photos = Photo.objects.all()
-    return render(request, 'photo/list.html', {'photos':photos})
 
