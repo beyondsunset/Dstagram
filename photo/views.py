@@ -12,7 +12,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 
-
 def photo_list(request):
     photos = Photo.objects.all()
     return render(request, 'photo/list.html', {'photos': photos})
